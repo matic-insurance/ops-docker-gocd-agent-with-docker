@@ -1,0 +1,22 @@
+sudo: required
+language: python
+
+services:
+  - docker
+
+env:
+  matrix:
+    - GOCD_VERSION=v17.4.0 DOCKER_VERSION=17.09.0
+    - GOCD_VERSION=v17.11.0 DOCKER_VERSION=17.09.0
+
+script:
+  - sed "s/:GOCD_VERSION/:${GOCD_VERSION}/g" < Dockerfile > live.docker
+  - docker build --build-arg DOCKER_VERSION=${DOCKER_VERSION} -t maticinsurance/gocd-agent-with-ansible:build-${TRAVIS_BUILD_NUMBER} -f live.docker .
+
+after_success:
+  - if [ "$TRAVIS_BRANCH" == "master" ] && [ "$TRAVIS_PULL_REQUEST" = "false" ]; then
+    export DOCKER_IMAGE=maticinsurance/gocd-agent-with-ansible:gocd.${GOCD_VERSION}.docker.${DOCKER_VERSION};
+    docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD";
+    docker tag maticinsurance/gocd-agent-with-ansible:build-${TRAVIS_BUILD_NUMBER} $DOCKER_IMAGE;
+    docker push $DOCKER_IMAGE;
+    fi
