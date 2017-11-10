@@ -7,7 +7,7 @@ USER root
 
 # Install docker requirements
 RUN apt-get install -y --no-install-recommends \
-    apt-transport-https ca-certificates curl gnupg2 software-properties-common && \
+    apt-transport-https ca-certificates curl software-properties-common && \
     curl -fsSL https://apt.dockerproject.org/gpg | apt-key add - && \
     add-apt-repository "deb https://apt.dockerproject.org/repo/debian-$(lsb_release -cs) main"\
 
