@@ -9,7 +9,7 @@ USER root
 RUN apt-get install -y --no-install-recommends \
     apt-transport-https ca-certificates curl software-properties-common && \
     curl -fsSL https://apt.dockerproject.org/gpg | apt-key add - && \
-    add-apt-repository "deb https://apt.dockerproject.org/repo/debian-$(lsb_release -cs) main"\
+    add-apt-repository "deb https://apt.dockerproject.org/repo/debian-$(lsb_release -cs) main"
 
 # Install docker environment
 RUN apt-get update && apt-get install -y --no-install-recommends \
