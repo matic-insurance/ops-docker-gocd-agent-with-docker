@@ -18,15 +18,16 @@ for GOCD usage instructions
 
 Docker is installed inside of GoCD agent image but 
 containers and commands are run outside of it. 
-Docker that is running agent image or any other docker 
-daemon you have access to from inside of agent
+You can use docker that is running agent image or any other docker 
+daemon you have access to from inside of agent.
 
 **Configuration**:
 
 - Configure Docker daemon that will execute commands to listen 
 Docker Engine API requests via tcp `-H tcp://0.0.0.0:2375`.
 [Docker socket options](https://docs.docker.com/engine/reference/commandline/dockerd/#examples)
-- Specify `DOCKER_HOST` with address of your docker daemon `tcp://DOCKER_HOST_UP:2375`
+- When running agent - specify `DOCKER_HOST` with address of 
+your docker daemon `DOCKER_HOST=tcp://${DOCKER_HOST_IP}:2375`
 
 **Important** Exposing docker api over tcp is not secure. 
 Make sure you know what uou are doing and no one can access API port.   
