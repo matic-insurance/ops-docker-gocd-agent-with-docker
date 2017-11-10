@@ -13,5 +13,5 @@ RUN apt-get install -y --no-install-recommends \
 
 # Install docker environment
 RUN apt-get update && apt-get install -y --no-install-recommends \
-    docker-ce=${DOCKER_VERSION} docker-engine python-dev libevent-dev python-pip && \
+    docker-ce=${DOCKER_VERSION} python-dev libevent-dev python-pip && \
     pip install docker-compose
