@@ -15,3 +15,7 @@ RUN apt-get install -y --no-install-recommends \
 RUN apt-get update && apt-get install -y --no-install-recommends \
     docker-ce=${DOCKER_VERSION} python-dev libevent-dev python-pip && \
     pip install docker-compose
+
+# Install code climate test reporter
+RUN curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter && \
+    chmod +x ./cc-test-reporter
