@@ -17,6 +17,6 @@ after_success:
   - if [ "$TRAVIS_BRANCH" == "master" ] && [ "$TRAVIS_PULL_REQUEST" = "false" ]; then
     export DOCKER_IMAGE=maticinsurance/gocd-agent-with-ansible:gocd.${GOCD_VERSION}.docker.${DOCKER_VERSION};
     docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD";
-    docker tag maticinsurance/gocd-agent-with-ansible:build-${TRAVIS_BUILD_NUMBER} $DOCKER_IMAGE;
+    docker tag maticinsurance/gocd-agent-with-docker:build-${TRAVIS_BUILD_NUMBER} $DOCKER_IMAGE;
     docker push $DOCKER_IMAGE;
     fi
